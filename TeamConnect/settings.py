@@ -153,12 +153,12 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER # Default sender email
 CELERY_BROKER_URL = 'redis://localhost:6379/0'  # Using Redis as the message broker
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'  # Using Redis to store task results
 
-
+REDIS_URL=os.environ.get('REDIS_URL', 'redis://red-d5gb2bngi27c73blqhk0:6379')
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": ["redis://127.0.0.1:6379"],
+            "hosts": [REDIS_URL],
         },
     },
 }
