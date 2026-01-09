@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-$-+^e3$ki*3t)#@dm5959&4n=&+%e*qnckq0qwu!((cx&w%cue
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -186,8 +186,7 @@ import dj_database_url
 
 SECRET_KEY = os.environ.get("SECRET_KEY", "fallback-secret")
 DEBUG = os.environ.get("DEBUG", "False") == "True"
-ALLOWED_HOSTS = ["teamconnect.onrender.com", "localhost"]
-
+ALLOWED_HOSTS = ["teamconnect-1-wn7t.onrender.com"]
 # Static files
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
