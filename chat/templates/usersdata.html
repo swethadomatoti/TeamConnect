@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Custom User List</title>
+</head>
+<body>
+    <h1>All Users</h1>
+
+    <table border="1" cellpadding="8">
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Phone</th>
+            <th>Email</th>
+            {% comment %} <th>Password</th> {% endcomment %}
+            <th>Date Joined</th>
+        </tr>
+
+        {% for user in customuser %}
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.phone }}</td>
+            <td>{{ user.email }}</td>
+            {% comment %} <td>{{user.password }}</td> {% endcomment %}
+            <td>{{ user.date_joined }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5" style="text-align:center;">No users found.</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

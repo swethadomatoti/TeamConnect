@@ -1,0 +1,67 @@
+{% comment %} <h2>Login</h2>
+<form method="POST">
+    {% csrf_token %}
+    <label>Username:</label><input type="text" name="username"><br>
+    <label>Password:</label><input type="password" name="password"><br>
+    <button type="submit">Login</button>
+</form>
+
+<p><a href="{% url 'forgot_password' %}">Forgot password?</a></p>
+
+{% for msg in messages %}
+  {% if 'login' in msg.tags %}
+    <p style="color: green;">{{ msg }}</p>
+  {% endif %}
+{% endfor %}
+ {% endcomment %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #4e73df, #1cc88a);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="card p-4 shadow" style="max-width: 400px; width: 100%;">
+      <h2 class="text-center text-primary mb-4">Login</h2>
+
+      <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input type="text" name="username" class="form-control" id="username" placeholder="Enter username">
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" name="password" class="form-control" id="password" placeholder="Enter password">
+        </div>
+
+        <button type="submit" class="btn btn-success w-100">Login</button>
+      </form>
+
+      <div class="text-center mt-3">
+        <a href="{% url 'forgot_password' %}" class="text-decoration-none text-primary">Forgot password?</a>
+      </div>
+
+      {% for msg in messages %}
+        {% if 'login' in msg.tags %}
+          <p class="text-center text-success mt-3">{{ msg }}</p>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</body>
+</html>
+

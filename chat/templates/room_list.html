@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Available Chat Rooms</h3>
+<ul class="list-group">
+{% for room in rooms %}
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    <div>
+       <strong>{{ room.name }}</strong>
+    </div>
+    <div>
+      <!--  Join button -->
+      <a href="{% url 'room_detail' room.name %}" class="btn btn-sm btn-primary me-2">Join</a>
+
+      <!--  Delete button -->
+      <a href="{% url 'delete_room' room.name %}" 
+         class="btn btn-sm btn-outline-danger"
+         onclick="return confirm('Are you sure you want to delete this room?');">
+         Delete
+      </a>
+    </div>
+  </li>
+{% empty %}
+  <li class="list-group-item text-muted">No rooms available.<a href="{% url 'create_room' %}">Create one</a></li>
+{% endfor %}
+</ul>
+<br>
+<a href="{% url 'create_room' %}" class="btn btn-success">+ Create New Room</a>
+
+{% endblock %}
+
+{% comment %} <ul class="list-group">
+  {% for room in rooms %}
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      {{ room.name }}
+      <a href="{% url 'room_detail' room.name %}" class="btn btn-sm btn-primary">Join</a>
+    </li>
+  {% empty %}
+    <li class="list-group-item">No rooms yet. <a href="{% url 'create_room' %}">Create one</a>.</li>
+  {% endfor %}
+</ul>
+<br>
+<a href="{% url 'create_room' %}" class="btn btn-success">+ Create New Room</a>
+
+{% endblock %} {% endcomment %}
