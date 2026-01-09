@@ -186,7 +186,7 @@ import dj_database_url
 
 SECRET_KEY = os.environ.get("SECRET_KEY", "fallback-secret")
 DEBUG = os.environ.get("DEBUG", "False") == "True"
-ALLOWED_HOSTS = ["teamchat.onrender.com", "localhost"]
+ALLOWED_HOSTS = ["teamconnect.onrender.com", "localhost"]
 
 # Static files
 STATIC_URL = '/static/'
@@ -199,6 +199,7 @@ MIDDLEWARE = [
 ]
 
 # Database
+DATABASE_URL='postgresql://teamconnect_user:lzwMCmOz8ydha0Yy2kTXFDdePN1MkAwj@dpg-d5gd9tshg0os73bhudog-a/teamconnect'
 DATABASES = {
     'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
 }
