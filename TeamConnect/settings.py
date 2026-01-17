@@ -211,3 +211,7 @@ CACHES = {
         "OPTIONS": {"CLIENT_CLASS": "django_redis.client.DefaultClient"},
     }
 }
+
+LOGIN_URL = '/chat/login/'           
+LOGIN_REDIRECT_URL = '/chat/'         
+LOGOUT_REDIRECT_URL = '/chat/login/'
