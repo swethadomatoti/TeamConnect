@@ -166,13 +166,6 @@ CHANNEL_LAYERS = {
 TIME_ZONE = 'Asia/Kolkata'
 USE_TZ = True
 
-
-#Redirect unauthenticated users to login page
-# LOGIN_URL = 'login'
-# Redirect users here after successful login
-# LOGIN_REDIRECT_URL = 'room_list'
-# # Redirect users here after logout
-# LOGOUT_REDIRECT_URL = 'login'
 # CHANNEL_LAYERS = {
 #     'default': {
 #         'BACKEND': 'channels.layers.InMemoryChannelLayer',
@@ -212,6 +205,6 @@ CACHES = {
     }
 }
 
-LOGIN_URL = '/chat/login/'           
-LOGIN_REDIRECT_URL = '/chat/'         
-LOGOUT_REDIRECT_URL = '/chat/login/'
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/room/'
+LOGOUT_REDIRECT_URL = '/login/'
