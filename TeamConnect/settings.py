@@ -25,9 +25,6 @@ SECRET_KEY = 'django-insecure-$-+^e3$ki*3t)#@dm5959&4n=&+%e*qnckq0qwu!((cx&w%cue
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = []
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -121,7 +118,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-STATIC_URL = 'static/'
+
 from pathlib import Path
 import os
 
@@ -179,7 +176,10 @@ import dj_database_url
 
 SECRET_KEY = os.environ.get("SECRET_KEY", "fallback-secret")
 DEBUG = os.environ.get("DEBUG", "False") == "True"
-ALLOWED_HOSTS = ["teamconnect-1-wn7t.onrender.com"]
+ALLOWED_HOSTS = ["teamconnect-1-wn7t.onrender.com", "localhost", "127.0.0.1"]
+
+CSRF_TRUSTED_ORIGINS = ["https://teamconnect-1-wn7t.onrender.com"]
+
 # Static files
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
