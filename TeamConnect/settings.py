@@ -192,9 +192,16 @@ MIDDLEWARE = [
 
 # Database
 DATABASE_URL='postgresql://teamconnect_user:lzwMCmOz8ydha0Yy2kTXFDdePN1MkAwj@dpg-d5gd9tshg0os73bhudog-a/teamconnect'
+# DATABASES = {
+#     'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+# }
+
 DATABASES = {
-    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+    'default': dj_database_url.config(
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}"
+    )
 }
+
 
 # Redis (optional)
 CACHES = {
