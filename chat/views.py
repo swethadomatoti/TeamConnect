@@ -12,7 +12,7 @@ def register_user(request):
         if form.is_valid():#Validate the form data
             user = form.save()# Save the new user to the database
             # send mail using celery
-            send_welcome_celeryemail.delay(user.username,user.email)
+            send_welcome_celeryemail(user.username,user.email)
             messages.success(request, "Registration successful! Check your email for a welcome message.")
             return render(request,'login.html')
         else:
