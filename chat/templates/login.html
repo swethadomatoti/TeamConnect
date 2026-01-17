@@ -54,6 +54,18 @@
       <div class="text-center mt-3">
         <a href="{% url 'forgot_password' %}" class="text-decoration-none text-primary">Forgot password?</a>
       </div>
+       <!-- New "Register" and "Forgot password" section -->
+      <div class="text-center mt-3">
+        <p>
+          Don’t have an account?
+          <a href="{% url 'register' %}" class="text-decoration-none text-primary fw-semibold">
+            Register here
+          </a>
+        </p>
+        <a href="{% url 'forgot_password' %}" class="text-decoration-none text-primary">
+          Forgot password?
+        </a>
+      </div>
 
       {% for msg in messages %}
         {% if 'login' in msg.tags %}
