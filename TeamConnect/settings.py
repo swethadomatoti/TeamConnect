@@ -147,8 +147,9 @@ EMAIL_HOST_PASSWORD = 'vikejxmcrmctqkaq'# Email password / App password
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER # Default sender email
  
 
-CELERY_BROKER_URL = 'redis://localhost:6379/0'  # Using Redis as the message broker
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'  # Using Redis to store task results
+CELERY_BROKER_URL = os.environ.get('REDIS_URL', 'redis://red-d5gb2bngi27c73blqhk0:6379')
+CELERY_RESULT_BACKEND = os.environ.get('REDIS_URL', 'redis://red-d5gb2bngi27c73blqhk0:6379')
+ 
 
 REDIS_URL=os.environ.get('REDIS_URL', 'redis://red-d5gb2bngi27c73blqhk0:6379')
 CHANNEL_LAYERS = {
