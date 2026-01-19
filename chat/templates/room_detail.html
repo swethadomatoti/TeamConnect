@@ -70,8 +70,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const roomName = "{{ room.name }}";
     const chatSocket = new WebSocket(
-        'ws://' + window.location.host + '/ws/chat/' + encodeURIComponent(roomName) + '/'
-    );
+    (window.location.protocol === 'https:' ? 'wss://' : 'ws://') + window.location.host + '/ws/chat/' + encodeURIComponent(roomName) + '/');
 
     chatSocket.onmessage = function(e) {
         const data = JSON.parse(e.data);
