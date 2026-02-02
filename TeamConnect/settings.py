@@ -196,12 +196,15 @@ DATABASE_URL='postgres://blog_fn8k_user:eG1Maqw6I28W0zW2uoNNWZ6zMtWpItJs@dpg-d60
 # DATABASES = {
 #     'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
 # }
-
 DATABASES = {
     'default': dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}"
+        default=os.environ.get('DATABASE_URL'),  # uses DATABASE_URL environment variable from Render
+        conn_max_age=600,                        # keeps connections alive
+        ssl_require=True                          # important for Render Postgres
     )
 }
+
+ 
 
 
 # Redis (optional)
