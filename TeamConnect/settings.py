@@ -192,7 +192,7 @@ MIDDLEWARE = [
 ]
 
 # Database
-DATABASE_URL='postgresql://blog_fn8k_user:eG1Maqw6I28W0zW2uoNNWZ6zMtWpItJs@dpg-d607hs9r0fns73eqlkc0-a/blog_fn8k'
+DATABASE_URL='postgresql://teamconnect_ugn2_user:NP0tQdWVz9kct1JnUbn8LTSHFoaGnVv9@dpg-d62opishg0os73ep6r0g-a/teamconnect_ugn2'
 # DATABASES = {
 #     'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
 # }
