@@ -2,13 +2,15 @@ import os
 import django
 from django.db import connections
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "yourproject.settings")  # <-- replace with your settings module
+# 👇 replace this with your actual settings module (check manage.py)
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "TeamConnect.settings")
+
 django.setup()
 
 connection = connections["default"]
 cursor = connection.cursor()
 
-# Delete all migration history so Django can rebuild fresh
+# Clear the migration history table
 cursor.execute("DELETE FROM django_migrations;")
 connection.commit()
 
