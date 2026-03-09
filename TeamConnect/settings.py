@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -172,8 +174,7 @@ USE_TZ = True
 #         },
 #     },
 # }
-import os
-import dj_database_url
+
 
 SECRET_KEY = os.environ.get("SECRET_KEY", "fallback-secret")
 DEBUG = os.environ.get("DEBUG", "False") == "True"
@@ -191,16 +192,9 @@ MIDDLEWARE = [
     *MIDDLEWARE,
 ]
 
-# Database
-DATABASE_URL='postgresql://teamconnect_ugn2_user:NP0tQdWVz9kct1JnUbn8LTSHFoaGnVv9@dpg-d62opishg0os73ep6r0g-a/teamconnect_ugn2'
-# DATABASES = {
-#     'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
-# }
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL'),  # uses DATABASE_URL environment variable from Render
-        conn_max_age=600,                        # keeps connections alive
-        ssl_require=True                          # important for Render Postgres
+        default=os.environ.get("DATABASE_URL")  # read DATABASE_URL from Render
     )
 }
 
