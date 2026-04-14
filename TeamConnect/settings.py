@@ -148,20 +148,30 @@ EMAIL_HOST_USER = 'swethadomatoti@gmail.com'# Sender email address
 EMAIL_HOST_PASSWORD = 'vikejxmcrmctqkaq'# Email password / App password
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER # Default sender email
  
-
 CELERY_BROKER_URL = os.environ.get('REDIS_URL', 'redis://red-d5gb2bngi27c73blqhk0:6379')
 CELERY_RESULT_BACKEND = os.environ.get('REDIS_URL', 'redis://red-d5gb2bngi27c73blqhk0:6379')
  
 
-REDIS_URL=os.environ.get('REDIS_URL', 'redis://red-d5gb2bngi27c73blqhk0:6379')
-CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels_redis.core.RedisChannelLayer",
-        "CONFIG": {
-            "hosts": [REDIS_URL],
+ 
+
+REDIS_URL = os.environ.get('REDIS_URL')
+
+if REDIS_URL:
+    CHANNEL_LAYERS = {
+        "default": {
+            "BACKEND": "channels_redis.core.RedisChannelLayer",
+            "CONFIG": {
+                "hosts": [REDIS_URL],
+            },
         },
-    },
-}
+    }
+else:
+    # fallback (no Redis)
+    CHANNEL_LAYERS = {
+        "default": {
+            "BACKEND": "channels.layers.InMemoryChannelLayer",
+        },
+    }
 
 TIME_ZONE = 'Asia/Kolkata'
 USE_TZ = True
