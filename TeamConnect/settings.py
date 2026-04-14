@@ -148,14 +148,19 @@ EMAIL_HOST_USER = 'swethadomatoti@gmail.com'# Sender email address
 EMAIL_HOST_PASSWORD = 'vikejxmcrmctqkaq'# Email password / App password
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER # Default sender email
  
-CELERY_BROKER_URL = os.environ.get('REDIS_URL', 'redis://red-d5gb2bngi27c73blqhk0:6379')
-CELERY_RESULT_BACKEND = os.environ.get('REDIS_URL', 'redis://red-d5gb2bngi27c73blqhk0:6379')
  
 
  
 
-REDIS_URL = os.environ.get('REDIS_URL')
+import os
 
+REDIS_URL = os.environ.get("REDIS_URL")
+
+# ✅ Celery config
+CELERY_BROKER_URL = REDIS_URL
+CELERY_RESULT_BACKEND = REDIS_URL
+
+# ✅ Channels config
 if REDIS_URL:
     CHANNEL_LAYERS = {
         "default": {
@@ -166,24 +171,34 @@ if REDIS_URL:
         },
     }
 else:
-    # fallback (no Redis)
     CHANNEL_LAYERS = {
         "default": {
             "BACKEND": "channels.layers.InMemoryChannelLayer",
         },
     }
 
+# ✅ Cache config
+if REDIS_URL:
+    CACHES = {
+        "default": {
+            "BACKEND": "django_redis.cache.RedisCache",
+            "LOCATION": REDIS_URL,
+            "OPTIONS": {
+                "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            },
+        }
+    }
+else:
+    CACHES = {
+        "default": {
+            "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+        }
+    }
+
 TIME_ZONE = 'Asia/Kolkata'
 USE_TZ = True
 
-# CHANNEL_LAYERS = {
-#     'default': {
-#         'BACKEND': 'channels.layers.InMemoryChannelLayer',
-#         'CONFIG': {
-#             'hosts': [('127.0.0.1', 6379)],            
-#         },
-#     },
-# }
+ 
 
 
 SECRET_KEY = os.environ.get("SECRET_KEY", "fallback-secret")
@@ -211,14 +226,7 @@ DATABASES = {
  
 
 
-# Redis (optional)
-CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": os.environ.get("REDIS_URL","redis://red-d5gb2bngi27c73blqhk0:6379"),
-        "OPTIONS": {"CLIENT_CLASS": "django_redis.client.DefaultClient"},
-    }
-}
+ 
 
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/room/'
